@@ -409,9 +409,9 @@
     },
 
     // customMouse() {
-    //   var mouse = { x: 0, y: 0 }; 
-    //   var pos = { x: 0, y: 0 }; 
-    //   var ratio = 0.15; 
+    //   var mouse = { x: 0, y: 0 };
+    //   var pos = { x: 0, y: 0 };
+    //   var ratio = 0.15;
     //   var active = false;
     //   var ball = $("#ball");
 
@@ -434,7 +434,7 @@
     //     },
     //   };
     //   gsap.set(ball, {
-        
+
     //     xPercent: -50,
     //     yPercent: -50,
     //   });
@@ -452,9 +452,9 @@
     //       gsap.set(ball, { x: pos.x, y: pos.y });
     //     }
     //   }
-      
+
     //   $("a,.c-pointer,button,.progress")
-    //     .not(".project_slider a") 
+    //     .not(".project_slider a")
     //     .on("mouseenter", function () {
     //       gsap.to(ball, {
     //         duration: 0.3,
@@ -469,7 +469,6 @@
     //       gsap.to(ball, defaultValue);
     //     });
 
-      
     //   if ($("[data-cursor]")) {
     //     $("[data-cursor]").each(function () {
     //       $(this)
@@ -520,7 +519,7 @@
 
     //     tl.to(svg, {
     //       duration: 0.1,
-        
+
     //       ease: "power2.easeIn",
     //     }).to(svg, {
     //       duration: 0.5,
@@ -568,3 +567,11 @@
     udigi.init();
   });
 })(jQuery);
+
+//*--scrollBtn-----*//
+document.getElementById("scrollToTop").addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth" // for smooth scrolling
+    });
+  });
