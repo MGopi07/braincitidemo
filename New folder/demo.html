@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GSAP Hero Slider with Button</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        header {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1.05);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            z-index: 10;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-book {
+            padding: 12px 28px;
+            font-size: 1rem;
+            color: #fff;
+            background: linear-gradient(45deg, #eac74c, #c7971f);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-book:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="slider-wrapper">
+            <div class="slide active" style="background-image: url('https://picsum.photos/id/1015/1600/900');"></div>
+            <div class="slide" style="background-image: url('https://picsum.photos/id/1016/1600/900');"></div>
+            <div class="slide" style="background-image: url('https://picsum.photos/id/1018/1600/900');"></div>
+            <div class="overlay"></div>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="gsap-title">Welcome to Brainciti</h1>
+            <p class="gsap-subtitle">Innovate. Integrate. Inspire.</p>
+            <button class="btn-book gsap-btn">Book Now</button>
+        </div>
+    </header>
+
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <script>
+        // Animate text and button on load
+        gsap.from(".gsap-title", {
+            y: -50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.from(".gsap-subtitle", {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            delay: 0.3,
+            ease: "power3.out"
+        });
+
+        gsap.from(".gsap-btn", {
+            scale: 0.8,
+            opacity: 0,
+            duration: 1,
+            delay: 0.6,
+            ease: "back.out(1.7)"
+        });
+
+        // Background slider
+        let current = 0;
+        const slides = document.querySelectorAll(".slide");
+        const total = slides.length;
+
+        setInterval(() => {
+            slides[current].classList.remove("active");
+            current = (current + 1) % total;
+            slides[current].classList.add("active");
+
+            // Re-trigger animations
+            gsap.from(".gsap-title", { opacity: 0, y: -30, duration: 0.8 });
+            gsap.from(".gsap-subtitle", { opacity: 0, y: 30, duration: 0.8, delay: 0.2 });
+            gsap.from(".gsap-btn", { scale: 0.8, opacity: 0, duration: 1, delay: 0.4 });
+        }, 5000);
+    </script>
+
+</body>
+
+</html>
